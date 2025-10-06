@@ -11,7 +11,7 @@ router.use("/api", userRoutes);
 // Health check route
 router.get("/health", (req, res) => {
   res.status(200).json({
-    success: true,
+    status: "success",
     message: "Server is running!",
     timestamp: new Date().toISOString(),
   });

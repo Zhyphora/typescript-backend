@@ -23,7 +23,7 @@ export const validateDto = (dtoClass: any) => {
         }));
 
         return res.status(400).json({
-          success: false,
+          status: "error",
           message: "Validation failed",
           errors: errorMessages,
         });

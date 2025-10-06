@@ -28,7 +28,7 @@ export const authenticate = async (
 
     if (!token) {
       return res.status(401).json({
-        success: false,
+        status: "error",
         message: "Authentication token is required",
       });
     }
@@ -38,7 +38,7 @@ export const authenticate = async (
 
     if (!payload) {
       return res.status(401).json({
-        success: false,
+        status: "error",
         message: "Invalid or expired token",
       });
     }
@@ -51,7 +51,7 @@ export const authenticate = async (
 
     if (!user) {
       return res.status(401).json({
-        success: false,
+        status: "error",
         message: "User not found or inactive",
       });
     }

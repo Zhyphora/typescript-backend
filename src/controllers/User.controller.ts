@@ -14,13 +14,13 @@ export class UserController {
       });
 
       return res.status(200).json({
-        success: true,
+        status: "success",
         message: "Users retrieved successfully",
         data: users,
       });
     } catch (error) {
       return res.status(500).json({
-        success: false,
+        status: "error",
         message: "Error retrieving users",
         error: error instanceof Error ? error.message : "Unknown error",
       });
@@ -42,19 +42,19 @@ export class UserController {
       }
 
       return res.status(200).json({
-        success: true,
+        status: "success",
         message: "User retrieved successfully",
         data: user,
       });
     } catch (error) {
       if (error instanceof NotFoundError) {
         return res.status(error.statusCode).json({
-          success: false,
+          status: "error",
           message: error.message,
         });
       }
       return res.status(500).json({
-        success: false,
+        status: "error",
         message: "Error retrieving user",
         error: error instanceof Error ? error.message : "Unknown error",
       });
@@ -91,19 +91,19 @@ export class UserController {
       const { password: _, ...userWithoutPassword } = newUser;
 
       return res.status(201).json({
-        success: true,
+        status: "success",
         message: "User created successfully",
         data: userWithoutPassword,
       });
     } catch (error) {
       if (error instanceof ConflictError) {
         return res.status(error.statusCode).json({
-          success: false,
+          status: "error",
           message: error.message,
         });
       }
       return res.status(500).json({
-        success: false,
+        status: "error",
         message: "Error creating user",
         error: error instanceof Error ? error.message : "Unknown error",
       });
@@ -142,19 +142,19 @@ export class UserController {
       const { password: _, ...userWithoutPassword } = user;
 
       return res.status(200).json({
-        success: true,
+        status: "success",
         message: "User updated successfully",
         data: userWithoutPassword,
       });
     } catch (error) {
       if (error instanceof NotFoundError || error instanceof ConflictError) {
         return res.status(error.statusCode).json({
-          success: false,
+          status: "error",
           message: error.message,
         });
       }
       return res.status(500).json({
-        success: false,
+        status: "error",
         message: "Error updating user",
         error: error instanceof Error ? error.message : "Unknown error",
       });
@@ -176,18 +176,18 @@ export class UserController {
       await userRepository.remove(user);
 
       return res.status(200).json({
-        success: true,
+        status: "success",
         message: "User deleted successfully",
       });
     } catch (error) {
       if (error instanceof NotFoundError) {
         return res.status(error.statusCode).json({
-          success: false,
+          status: "error",
           message: error.message,
         });
       }
       return res.status(500).json({
-        success: false,
+        status: "error",
         message: "Error deleting user",
         error: error instanceof Error ? error.message : "Unknown error",
       });

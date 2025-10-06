@@ -16,7 +16,7 @@ app.use(routes);
 // 404 handler
 app.use((req: Request, res: Response) => {
   res.status(404).json({
-    success: false,
+    status: "error",
     message: "Route not found",
   });
 });

@@ -43,7 +43,7 @@ export class AuthController {
       const { password: _, ...userWithoutPassword } = newUser;
 
       return res.status(201).json({
-        success: true,
+        status: "success",
         message: "User registered successfully",
         data: {
           user: userWithoutPassword,
@@ -53,12 +53,12 @@ export class AuthController {
     } catch (error) {
       if (error instanceof AppError) {
         return res.status(error.statusCode).json({
-          success: false,
+          status: "error",
           message: error.message,
         });
       }
       return res.status(500).json({
-        success: false,
+        status: "error",
         message: "Error registering user",
         error: error instanceof Error ? error.message : "Unknown error",
       });
@@ -105,7 +105,7 @@ export class AuthController {
       const { password: _, ...userWithoutPassword } = user;
 
       return res.status(200).json({
-        success: true,
+        status: "success",
         message: "Login successful",
         data: {
           user: userWithoutPassword,
@@ -115,12 +115,12 @@ export class AuthController {
     } catch (error) {
       if (error instanceof AppError) {
         return res.status(error.statusCode).json({
-          success: false,
+          status: "error",
           message: error.message,
         });
       }
       return res.status(500).json({
-        success: false,
+        status: "error",
         message: "Error logging in",
         error: error instanceof Error ? error.message : "Unknown error",
       });
@@ -143,19 +143,19 @@ export class AuthController {
       const { password: _, ...userWithoutPassword } = user;
 
       return res.status(200).json({
-        success: true,
+        status: "success",
         message: "User retrieved successfully",
         data: userWithoutPassword,
       });
     } catch (error) {
       if (error instanceof AppError) {
         return res.status(error.statusCode).json({
-          success: false,
+          status: "error",
           message: error.message,
         });
       }
       return res.status(500).json({
-        success: false,
+        status: "error",
         message: "Error retrieving user",
         error: error instanceof Error ? error.message : "Unknown error",
       });

@@ -22,7 +22,7 @@ export const errorHandler = (
   // Handle AppError (operational errors)
   if (error instanceof AppError) {
     return res.status(error.statusCode).json({
-      success: false,
+      status: "error",
       message: error.message,
       ...(process.env.NODE_ENV === "development" && { stack: error.stack }),
     });
@@ -30,7 +30,7 @@ export const errorHandler = (
 
   // Handle unexpected errors
   return res.status(500).json({
-    success: false,
+    status: "error",
     message: "Internal server error",
     ...(process.env.NODE_ENV === "development" && {
       error: error.message,
